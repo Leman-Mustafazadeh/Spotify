@@ -1,0 +1,125 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.home {
+  display: flex;
+  width: 100%;
+}
+.home_left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: black;
+  width: 20%;
+  height: 100vh;
+}
+.home_head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.home_head i {
+  font-size: 25px;
+}
+.home_head h3 {
+  color: white;
+  font-weight: 600;
+}
+.home_left i {
+  color: white;
+}
+.home_left p {
+  color: white;
+  font-weight: 500;
+}
+.home_item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 30px 0;
+}
+.home_lang {
+  border: 1px solid gray;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
+  border-radius: 20px;
+  text-align: center;
+  margin-top: 40px;
+}
+.library {
+  padding-top: 20px;
+}
+.home_right{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.home_right .popular {
+  width: 100%;
+  height: 10%;
+  background-color:rgb(15, 15, 15);
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  padding: 15px;
+  gap: 10px;
+}
+.home_right .popular a:first-child{
+background-color:black;
+border-color: transparent;
+color: white;
+}
+.home_right .popular a{
+    font-weight: 600;
+    padding: 7px 10px;
+    border-radius: 20px;
+    outline: none;
+}
+.home_right .popular:last-child a{
+    background-color: white;
+    color: black;
+}
+.artist{
+    background-color:rgb(19, 18, 18);
+    height: 100%;
+    padding: 20px;
+}
+.artist_head p{
+font-weight: 600;
+color: white;
+font-family: "Roboto", sans-serif;
+}
+.cards{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+  margin-top: 20px;
+}
+.cards_item h5{
+ color: white;
+ font-weight: 600;
+ font-size: 20px;
+ padding-top: 20px;
+}
+.cards_item p{
+  color: gray;
+  font-weight: 500;
+  font-size: 15px;
+ }
+.cards_item img{
+width: 90%;
+height: 180px;
+border-radius: 50%;
+object-fit: cover;
+}
+.popular .popular_item{
+  display: flex;
+  
+}

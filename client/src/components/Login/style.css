@@ -1,0 +1,66 @@
+.login_page {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+}
+.login_head i {
+  font-size: 30px;
+  color: white;
+  text-align: center;
+}
+.login_head h1 {
+  font-size: 30px;
+  color: white;
+  font-family: CircularSp, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.login_title {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+.login_title label {
+  color: white;
+}
+.login_title input {
+  margin-top: 5px;
+  box-shadow: inset 0 0 0 1px var(#ffffff, #000000);
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 5px 3px;
+  background-color: black;
+  outline: none;
+  color: white;
+}
+.login_item {
+  display: flex;
+  flex-direction: column;
+}
+.login_pass {
+  margin-top: 20px;
+}
+.login_page button {
+  background-color: #1fdf64;
+  color: #000000;
+  border-color: transparent;
+  cursor: pointer;
+  border-radius: 20px;
+  width: 30%;
+  margin-top: 30px;
+  padding: 10px;
+  font-weight: 700;
+}
+.login_page button:hover {
+  transform: scale(1.04);
+}
+a {
+  color: white;
+  padding-top: 20px;
+}
+p {
+  color: #a7a7a7;
+  font-weight: 400;
+  font-size: 1rem;
+}
