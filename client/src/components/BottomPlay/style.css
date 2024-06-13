@@ -1,0 +1,50 @@
+.player{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+}
+.play_button{
+    border: 1px solid white;
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.play_button i{
+    font-size: 20px;
+
+}
+.play_between{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+.play_shuffle i{
+font-size: 25px;
+color: gray;
+cursor: pointer;
+}
+.play_shuffle i:hover{
+    color: white;
+}
+.prev_play i{
+    font-size: 25px;
+    color: gray;
+    cursor: pointer;
+}
+.prev_play i:hover{
+    color: white;
+}
+.repeat_play i{
+    font-size: 25px;
+    color: gray;
+    cursor: pointer;
+    }
+    .repeat_play i:hover{
+        color: white;
+    }
