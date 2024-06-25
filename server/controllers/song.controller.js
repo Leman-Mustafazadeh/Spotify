@@ -59,14 +59,29 @@ const song_controller = {
       response: response,
     });
   },
-  post: async (req, res) => {
-    const song = new SongModel(req.body);
-    await song.save();
-    res.send({
-      message: "posted",
-      data: song,
-    });
+  post: async (req, res) => { 
+    try {
+      const song = new SongModel(req.body);
+
+      if (req.files && req.files.musicSrc && req.files.imgSrc) {
+        const audio = "http://localhost:6060/uploads/" + req.files.musicSrc[0].filename;
+        song.musicSrc = audio;
+        const img = "http://localhost:6060/uploads/" + req.files.imgSrc[0].filename;
+        song.imgSrc = img;
+      }
+      await song.save();
+      res.status(201).json({
+        message: "posted",
+        data: song,
+      });
+    } catch (error) {
+      console.log(error);
+      res.json({
+        error: error.message,
+      });
+    }
   },
 };
 
 module.exports = song_controller;
+

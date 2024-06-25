@@ -56,7 +56,7 @@ const user_controller = {
       message: "deleted",
       response: response,
     });
-  },
+  },  
   update: async (req, res) => {
     const { id } = req.params;
     const response = await UserModel.findByIdAndUpdate(id, req.body);
@@ -68,57 +68,52 @@ const user_controller = {
   register: async (req, res) => {
     try {
       const { username, email } = req.body;
-      const duplicateUserName = await UserModel.find({ username: username });
-      const duplicateEmail = await UserModel.find({ email: email });
-      let message = "";
-      // if (duplicateUserName.length > 0) {
-      //   message = "username already exists";
-      // }
-      if (duplicateEmail.length > 0) {
-        message = "email already exists";
+      const duplicateEmail = await UserModel.findOne({ email: email });
+      if (duplicateEmail) {
+        return res.status(400).send({ error: true, message: "Email already exists" });
       }
-      if (message.length > 0) {
-        res.send({
-          error: true,
-          message: message,
-        });
-      } else {
-        let newUser = { ...req.body };
-        let saltRounds = 10;
-        bcrypt
-          .genSalt(saltRounds)
-          .then((salt) => bcrypt.hash(req.body.password, salt))
-          .then(async (hash) => {
-            newUser.password = hash;
-            // newUser.src = "http://localhost:6060/uploads/" + req.file.filename;
-            const user = new UserModel(newUser);
-            //JWT TOKEN
-            const token = jwt.sign(
-              { email: newUser.email },
-              process.env.PRIVATE_KEY,
-              { expiresIn: "1d" }
-            );
-            sendVerifyEmail(newUser.email, token);
-            await user.save();
-            res.send({
-              message: "posted",
-              error: false,
-              data: user,
-            });
-          });
-      }
+      let newUser = { ...req.body };
+      let saltRounds = 10;
+
+      // Hash the password
+      const hashedPassword = await bcrypt.hash(newUser.password, saltRounds);
+      newUser.password = hashedPassword;
+
+      // Create a new user instance
+      const user = new UserModel(newUser);
+
+      // Generate JWT token
+      const token = jwt.sign(
+        { email: newUser.email },
+        process.env.PRIVATE_KEY,
+        { expiresIn: "1d" }
+      );
+
+      // Send verification email
+      sendVerifyEmail(newUser.email, token);
+
+      // Save user to database
+      await user.save();
+
+      res.status(201).send({
+        message: "User registered successfully",
+        error: false,
+        data: user,
+      });
+console.log(req.body)
     } catch (error) {
       res.status(500).send({
-        message: error,
+        message: error.message || "Some error occurred while registering the user.",
         error: true,
       });
     }
   },
+
   user_login: async (req, res) => {
     const user = await UserModel.findOne({
       email: req.body.email,
-    }).or([{ role: "journalist" }, { role: "client" }]);
-
+    }).or([{ role: "artist" }, { role: "client" }]);
+    console.log(user);
     if (user) {
       bcrypt.compare(
         req.body.password,

@@ -1,0 +1,33 @@
+.popular .popular_item {
+  display: flex;
+}
+.popular {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+.popular_left {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+input {
+  background-color: #242424;
+  border-radius: 500px;
+  color: #fff !important;
+  height: 48px;
+  padding: 6px 36px;
+  text-overflow: ellipsis;
+  width: 100%;
+  font-weight: 600;
+  border-color: transparent;
+}
+.search_icon{
+    position: relative;
+    top: 3
+    px;
+    left: 40px;
+}

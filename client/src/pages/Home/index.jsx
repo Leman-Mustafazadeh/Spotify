@@ -1,14 +1,14 @@
 import React from 'react'
 import Popular from '../../components/Popular'
 import Search from '../../components/Search'
-import Library from '../../components/Library'
+import LikedSongs from '../../components/LikedSongs'
 
 const Home = () => {
   return (
-    <div>
+    <div className='contaMusic' >
      <Popular/>
      <Search/>
-     <Library/>
+     <LikedSongs/>
     </div>
   )
 }

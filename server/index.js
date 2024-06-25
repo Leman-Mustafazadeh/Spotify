@@ -11,3 +11,8 @@ app.use(cors());
 app.use(router.song);
 app.use(router.playlist);
 app.use(router.user);
+app.use(router.search);
+app.use(router.music);
+app.use(router.like);
+
+

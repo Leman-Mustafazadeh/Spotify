@@ -1,30 +1,38 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
-import { MenuProvider } from "../../context/ContextMenu";
+import { Link } from "react-router-dom";
+import Navigation from "../Navigation";
+import Data from "./Data";
+import { hundleAllDAta, setCurrent } from "../../redux/slice/player";
+import { useDispatch, useSelector } from "react-redux";
+
 const Popular = () => {
-  const { songs, setSongs } = useContext(MenuProvider);
+ 
+  const { allDAta } = useSelector(state => state.player)
 
   return (
-    <div>
-      <div className="home_right">
-        <div className="artist">
-          <div className="artist_head">
-            <p>Popular artists</p>
+    <div className="home_right home_right2">
+      <div className="popular">
+        <Navigation />
+        <div className="popular_item">
+          <a>
+            <Link style={{ textDecoration: "none" }} to={"/signup"}>
+              Sign up
+            </Link>
+          </a>
+          <a>
+            <Link style={{ textDecoration: "none" }} to={"/login"}>
+              Log in
+            </Link>
+          </a>
+        </div>
+      </div>
+      <div className="artist">
+        <div className="artist_head">
+          <p>Popular artists</p>
 
-            <div className="cards">
-              {songs.map((item) => {
-                return (
-                  <div className="cards_item" key={item._id}>
-                    <img src={item.imgSrc} alt="" />
-                    <div className="song_icon">
-                      <i class="fa-solid fa-play"></i>
-                    </div>
-                    <h5>{item.artist}</h5>
-                    <p>{item.title}</p>
-                  </div>
-                );
-              })}
-            </div>
+          <div className="cards">
+            {allDAta?.map((item) => <Data key={item._id} item={item} />)}
           </div>
         </div>
       </div>

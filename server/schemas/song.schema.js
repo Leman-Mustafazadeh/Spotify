@@ -4,9 +4,10 @@ const songSchema = new mongoose.Schema(
   {
     userId: String,
     imgSrc: String,
-    artist:String,
-    title:String,
-    song: String,
+    artist: String,
+    musicSrc: String,
+    name: String,
+    genre:String
   },
   { timestamps: true }
 );

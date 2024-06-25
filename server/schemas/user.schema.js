@@ -2,13 +2,17 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
-    name: String,
+    username: String,
     email: String,
-    gender:String,
-    password:String,
-    likeSongs:[],
-    playlist:[],
-    isAdmin:Boolean
+    password: String,
+    isVerified: {
+      type: Boolean,
+      default: false
+    },
+    role: {
+      type: String,
+      enum: ['admin','client','artist'],
+    },
   },
   { timestamps: true }
 );

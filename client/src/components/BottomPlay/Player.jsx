@@ -1,49 +1,148 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./style.css";
-import ReactDOM from "react-dom";
-import { Range, getTrackBackground } from "react-range";
-import { useAudio } from "react-use";
-import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import { useAudio, useFullscreen, useToggle } from "react-use";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import QueueMusicRoundedIcon from "@mui/icons-material/QueueMusicRounded";
+import CustomRange from "./Range";
+import { useDispatch, useSelector } from "react-redux";
+import { setControls, setCurrent, setSideBar } from "../../redux/slice/player";
+import FullScreen from "./FullScreen";
+
 const Player = () => {
-  const STEP = 0.1;
-  const MIN = 0;
-  // const MAX = 100;
-  // const [values, setValues] = useState([50]);
-  const [isThumbHovered, setIsThumbHovered] = useState(false);
+  const { current, sideBar } = useSelector((state) => state.player);
+  const dispatch = useDispatch();
   const [audio, state, controls, ref] = useAudio({
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    src: current?.musicSrc
   });
+
+  const screenRef = useRef(null);
+  const [show, toggle] = useToggle(false);
+  const isFullscreen = useFullscreen(screenRef, show, {
+    onClose: () => toggle(false),
+  });
+
+  const [isPlaying, setIsPlaying] = useState(false); 
+
+  useEffect(() => {
+    if (controls && current) {
+      dispatch(setControls(controls));
+      controls.play(); 
+      setIsPlaying(true); 
+    }
+  }, [dispatch,  current]);
+
+  const togglePlay = () => {
+    if (controls) {
+      if (isPlaying) {
+        controls.pause(); 
+      } else {
+        controls.play();
+      }
+      setIsPlaying(!isPlaying); 
+    }
+  };
+
+  const volumeIcon = () => {
+    if (!state) return null; 
+
+    if (state.volume === 0 || state.muted)
+      return (
+        <span style={{ color: "white" }} className="fa-solid fa-volume-xmark"></span>
+      );
+
+    if (state.volume > 0 && state.volume < 0.33)
+      return (
+        <span style={{ color: "white" }} className="fa-solid fa-volume-low"></span>
+      );
+
+    if (state.volume >= 0.33 && state.volume < 0.66)
+      return (
+        <span style={{ color: "white" }} className="fa-solid fa-volume-medium"></span>
+      );
+
+    return (
+      <span style={{ color: "white" }} className="fa-solid fa-volume-high"></span>
+    );
+  };
+
+  const handleLike =(item)=>{
+  }
+
+  
   function secondsToTime(seconds) {
     return new Date(1000 * seconds).toISOString().substr(14, 5);
   }
+
   return (
-    <div className="player">
-      <div>sol</div>
-      {/* {JSON.stringify(state)} */}
+    <div className="player" onClick={(e) => e.stopPropagation()}>
+      <div
+        style={{
+          color: "white",
+          display: "flex",
+          alignItems: "center",
+          gap: "6px",
+        }}
+        className="left_title"
+      >
+        {sideBar && (
+          <div
+            style={{
+              width: "200px",
+              height: "100px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "3px",
+            }}
+            className="left_img"
+          >
+            <img
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              src={current.imgSrc}
+              alt=""
+            />
+            {/* <div
+              className="left_icon"
+              onClick={() => dispatch(setSideBar(true))}
+            >
+              <span className="fa-solid fa-chevron-down"></span>
+            </div> */}
+            <div>
+              <h5 style={{ width: "150px" }}>{current.title}</h5>
+              <p style={{ width: "150px" }}>{current.artist}</p>
+            </div>
+            <p className="like_icon" onClick={()=>handleLike(item)}><i class="fa-solid fa-plus"></i></p>
+          </div>
+        )}
+      </div>
+
+
+
+
       <div>
         <div className="play_between">
           <p className="play_shuffle">
-            <i className="fa-solid fa-shuffle"></i>
+            <span className="fa-solid fa-shuffle"></span>
           </p>
 
           <p className="prev_play">
-            <i className="fa-solid fa-backward"></i>
+            <span className="fa-solid fa-backward"></span>
           </p>
-          <button
-            onClick={controls[state?.playing ? "pause" : "play"]}
+          <span
+            onClick={togglePlay}
             className="play_button"
           >
             <i
               className={
-                state.playing ? "fa-solid fa-pause" : "fa-solid fa-play"
+                isPlaying ? "fa-solid fa-pause" : "fa-solid fa-play"
               }
             ></i>
-          </button>
+          </span>
           <p className="prev_play">
-            <i className="fa-solid fa-forward"></i>
+            <span className="fa-solid fa-forward"></span>
           </p>
           <p className="repeat_play">
-            <i className="fa-solid fa-repeat"></i>
+            <span className="fa-solid fa-repeat"></span>
           </p>
         </div>
         {audio}
@@ -56,86 +155,62 @@ const Player = () => {
           }}
         >
           <div style={{ color: "white" }}>{secondsToTime(state?.time)}</div>
-          <Range
-            values={[state?.time]}
-            step={STEP}
-            min={MIN}
+          <CustomRange
+            step={0.1}
+            min={0}
             max={state?.duration || 1}
-            onChange={(values) => controls.seek(values[0])}
-            renderTrack={({ props, children }) => (
-              <div
-                onMouseDown={props.onMouseDown}
-                onTouchStart={props.onTouchStart}
-                style={{
-                  ...props.style,
-                  height: "36px",
-                  display: "flex",
-                  width: "100%",
-                }}
-              >
-                <div
-                  ref={props.ref}
-                  style={{
-                    height: "5px",
-                    width: "100%",
-                    borderRadius: "4px",
-                    background: getTrackBackground({
-                      values: [state?.time],
-                      colors: ["#1db954", "#535353"],
-                      min: MIN,
-                      max: state?.duration || 1,
-                    }),
-                    alignSelf: "center",
-                  }}
-                >
-                  {children}
-                </div>
-              </div>
-            )}
-            renderThumb={({ props, isDragged }) => (
-              <div
-                {...props}
-                style={{
-                  ...props.style,
-                  height: "12px",
-                  width: "12px",
-                  cursor: "pointer",
-                  borderRadius: "25px",
-                  backgroundColor: "#FFF",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  boxShadow: "0px 2px 6px #AAA",
-                  opacity: isThumbHovered || isDragged ? 1 : 0,
-                  transition: "opacity 0.2s",
-                }}
-                onMouseEnter={() => setIsThumbHovered(true)}
-                onMouseLeave={() => setIsThumbHovered(false)}
-              >
-                {/* You can add any content inside the thumb if needed */}
-              </div>
-            )}
+            value={state?.time}
+            onChange={(value) => controls.seek(value)}
           />
 
           <div style={{ color: "white" }}>{secondsToTime(state?.duration)}</div>
         </div>
       </div>
-      <div style={{display:'flex'}}>
+
+      <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
         <p className="prev_play">
-          <i class="fa-solid fa-microphone" style={{ color: "white" }}></i>
+          <span className="fa-solid fa-microphone" style={{ color: "white" }}></span>
         </p>
 
         <p className="prev_play">
-          <i class="fa-solid fa-mobile" style={{ color: "white" }}></i>
+          <QueueMusicRoundedIcon style={{ color: "white" }} />
         </p>
 
         <p className="prev_play">
-          <i class="fa-solid fa-mobile" style={{ color: "white" }}></i>
+          <span className="fa-solid fa-mobile" style={{ color: "white" }}></span>
+        </p>
+        <p
+          className="prev_play"
+          onClick={() => controls[state.muted ? "unmute" : "mute"]()}
+        >
+          {volumeIcon()}
         </p>
 
-        <p className="prev_play">
-          <VolumeUpIcon style={{color:'white'}}/>
+        <div style={{ width: "5rem" }}>
+          <CustomRange
+            step={0.01}
+            min={0}
+            max={1}
+            value={state?.muted ? 0 : state?.volume}
+            onChange={(value) => {
+              controls.unmute();
+              controls.volume(value);
+            }}
+          />
+        </div>
+
+        <p onClick={() => toggle()}>
+          <span
+            className="fa-solid fa-expand"
+            style={{ color: "white", fontSize: "20px" }}
+          ></span>
         </p>
+
+        <div ref={screenRef} onClick={(e) => e.stopPropagation()}>
+          {isFullscreen && (
+            <FullScreen toggle={toggle} state={state} controls={controls} />
+          )}
+        </div>
       </div>
     </div>
   );

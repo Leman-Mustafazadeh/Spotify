@@ -1,0 +1,252 @@
+
+                
+       
+       
+   
+       
+
+
+
+
+
+   {
+  "message": "success",
+  "data": [
+    {
+      "_id": "667318fea1eecd31117fbd7f",
+      "userId": "1",
+      "imgSrc": "https://lastfm.freetls.fastly.net/i/u/avatar170s/725cbf01f1b2b49bf17b3cb6e956283b",
+      "artist": "Lana Del Rey",
+      "song": [
+        {
+          "songName": "Lana Del Rey",
+          "title": "Summertime Sadness",
+          "imgSrc": "https://i.ytimg.com/vi/TdrL3QxjyVw/maxresdefault.jpg",
+          "_id": "667318fea1eecd31117fbd80"
+        },
+        {
+          "songName": "Lana Del Rey",
+          "title": "Say Yes To Haven",
+          "imgSrc": "https://i1.sndcdn.com/artworks-DadGacyEqvQcYE91-OQW7eg-t500x500.jpg",
+          "_id": "667318fea1eecd31117fbd81"
+        },
+        {
+          "songName": "Lana Del Rey",
+          "title": "Born To Die",
+          "imgSrc": "https://i.scdn.co/image/ab67616d0000b273b97b5f6b46c3f4af071e7331",
+          "_id": "667318fea1eecd31117fbd82"
+        },
+        {
+          "songName": "Lana Del Rey",
+          "title": "Young And Beautiful",
+          "imgSrc": "https://i.ytimg.com/vi/o_1aF54DO60/maxresdefault.jpg",
+          "_id": "667318fea1eecd31117fbd83"
+        },
+        {
+          "songName": "Lana Del Rey",
+          "title": "West Coast",
+          "imgSrc": "https://upload.wikimedia.org/wikipedia/en/c/c1/Lana_Del_Rey_-_West_Coast.png",
+          "_id": "667318fea1eecd31117fbd84"
+        },
+        {
+          "songName": "Lana Del Rey",
+          "title": "Video Games",
+          "imgSrc": "https://upload.wikimedia.org/wikipedia/en/c/cf/Lana_Del_Rey_-_Video_Games_single_cover.png",
+          "_id": "667318fea1eecd31117fbd85"
+        }
+      ],
+      "createdAt": "2024-06-19T17:44:30.452Z",
+      "updatedAt": "2024-06-19T17:44:30.452Z",
+      "__v": 0
+    },
+    {
+      "_id": "66731b49a1eecd31117fbdb2",
+      "userId": "3",
+      "imgSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxYgkT3p7JiPNiE15OAx5g1LTgTX8yPAZ9zw&s",
+      "artist": "Billie Elish",
+      "song": [
+        {
+          "songName": "Billie Elish",
+          "title": "Lunch",
+          "imgSrc": "https://i.ytimg.com/vi/TdrL3QxjyVw/maxresdefault.jpg",
+          "_id": "66731b49a1eecd31117fbdb3"
+        },
+        {
+          "songName": "Billie Elish",
+          "title": "Lovely",
+          "imgSrc": "https://i.ytimg.com/vi/V1Pl8CzNzCw/maxresdefault.jpg",
+          "_id": "66731b49a1eecd31117fbdb4"
+        },
+        {
+          "songName": "Billie Elish",
+          "title": "Every Thing I Wanted",
+          "imgSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5rJbTb26htzQqhRwshTu1gbuTfJJvuuePDg&s",
+          "_id": "66731b49a1eecd31117fbdb5"
+        },
+        {
+          "songName": "Billie Elish",
+          "title": "Bad Guy",
+          "imgSrc": "https://www.billboard.com/wp-content/uploads/media/Billie-Eilish-Bad-Guy-screenshot-2019-billboard-1500.jpg",
+          "_id": "66731b49a1eecd31117fbdb6"
+        },
+        {
+          "songName": "Billie Elish",
+          "title": "Ocean Eyes",
+          "imgSrc": "https://i.ytimg.com/vi/hG4lT4fxj8M/maxresdefault.jpg",
+          "_id": "66731b49a1eecd31117fbdb7"
+        },
+        {
+          "songName": "Billie Elish",
+          "title": "Bellyache",
+          "imgSrc": "https://upload.wikimedia.org/wikipedia/en/1/19/Billie_Eilish_-_Bellyache.png",
+          "_id": "66731b49a1eecd31117fbdb8"
+        }
+      ],
+      "createdAt": "2024-06-19T17:54:17.701Z",
+      "updatedAt": "2024-06-19T17:54:17.701Z",
+      "__v": 0
+    },
+    {
+      "_id": "66731ceea1eecd31117fbddf",
+      "userId": "4",
+      "imgSrc": "https://i.ytimg.com/vi/JtMHLC3r2RA/maxresdefault.jpg",
+      "artist": "Madison Beer",
+      "song": [
+        {
+          "songName": "Madison Beer",
+          "title": "Make You Mine",
+          "imgSrc": "https://upload.wikimedia.org/wikipedia/en/c/ca/Madison_Beer_-_Make_You_Mine.png",
+          "_id": "66731ceea1eecd31117fbde0"
+        },
+        {
+          "songName": "Madison Beer",
+          "title": "Home To Another One",
+          "imgSrc": "https://i.ytimg.com/vi/xSSLSjNJIBw/maxresdefault.jpg",
+          "_id": "66731ceea1eecd31117fbde1"
+        },
+        {
+          "songName": "Madison Beer",
+          "title": "Reckless",
+          "imgSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7lebHeYOpvGio_XIztDndlJWuLlsoCjPYEQ&s",
+          "_id": "66731ceea1eecd31117fbde2"
+        },
+        {
+          "songName": "Madison Beer",
+          "title": "Sweet Relief",
+          "imgSrc": "https://i.ytimg.com/vi/02xmR4rS3UE/maxresdefault.jpg",
+          "_id": "66731ceea1eecd31117fbde3"
+        },
+        {
+          "songName": "Madison Beer",
+          "title": "Selfish",
+          "imgSrc": "https://i.ytimg.com/vi/978iHuFKfS4/maxresdefault.jpg",
+          "_id": "66731ceea1eecd31117fbde4"
+        },
+        {
+          "songName": "Madison Beer",
+          "title": "Melodies",
+          "imgSrc": "https://i.ytimg.com/vi/pBHVtI9kTAo/maxresdefault.jpg",
+          "_id": "66731ceea1eecd31117fbde5"
+        }
+      ],
+      "createdAt": "2024-06-19T18:01:18.251Z",
+      "updatedAt": "2024-06-19T18:01:18.251Z",
+      "__v": 0
+    },
+    {
+      "_id": "66731fb291a80408cc66a3da",
+      "userId": "5",
+      "imgSrc": "https://cdn.theculturetrip.com/images/56-204598-sezen-aksu.jpg?s=10x",
+      "artist": "Sezen Aksu",
+      "song": [
+        {
+          "songName": "Sezen Aksu",
+          "title": "Firuze",
+          "imgSrc": "https://m.media-amazon.com/images/M/MV5BMzhkNDRiYzUtOWZkMi00NTA5LTk0ZDgtNDY3MmZhYmE4OWZhXkEyXkFqcGdeQXVyNDg4MjkzNDk@._V1_.jpg",
+          "_id": "66731fb291a80408cc66a3db"
+        },
+        {
+          "songName": "Sezen Aksu",
+          "title": "Tukenecegiz",
+          "imgSrc": "https://i.ytimg.com/vi/xSSLSjNJIBw/maxresdefault.jpg",
+          "_id": "66731fb291a80408cc66a3dc"
+        },
+        {
+          "songName": "Sezen Aksu",
+          "title": "Haydi Gel Benimle Ol",
+          "imgSrc": "https://i1.sndcdn.com/artworks-000228018400-d23ezr-t500x500.jpg",
+          "_id": "66731fb291a80408cc66a3dd"
+        },
+        {
+          "songName": "Sezen Aksu",
+          "title": "Kucugum",
+          "imgSrc": "https://i.ytimg.com/vi/ygotTM_4x-g/maxresdefault.jpg",
+          "_id": "66731fb291a80408cc66a3de"
+        },
+        {
+          "songName": "Sezen Aksu",
+          "title": "Manifesto",
+          "imgSrc": "https://i.ytimg.com/vi/6ywcf07KQZA/maxresdefault.jpg",
+          "_id": "66731fb291a80408cc66a3df"
+        },
+        {
+          "songName": "Sezen Aksu",
+          "title": "Rakkas",
+          "imgSrc": "https://i.ytimg.com/vi/IrRmFO59Ku8/maxresdefault.jpg",
+          "_id": "66731fb291a80408cc66a3e0"
+        }
+      ],
+      "createdAt": "2024-06-19T18:13:06.241Z",
+      "updatedAt": "2024-06-19T18:13:06.241Z",
+      "__v": 0
+    },
+    {
+      "_id": "66773a6540764369918229c0",
+      "userId": "1",
+      "imgSrc": "https://lastfm.freetls.fastly.net/i/u/avatar170s/725cbf01f1b2b49bf17b3cb6e956283b",
+      "artist": "Lana Del Rey",
+      "musicSrc": "https://grand.az/uploads/files/2024-01/1706467903_aygun-kazimova-sag-salamat-resmi-musiqi-videosump3_320k.mp3",
+      "song": [
+        {
+          "songName": "Lana Del Rey",
+          "title": "Summertime Sadness",
+          "imgSrc": "https://i.ytimg.com/vi/TdrL3QxjyVw/maxresdefault.jpg",
+          "_id": "66773a6540764369918229c1"
+        },
+        {
+          "songName": "Lana Del Rey",
+          "title": "Say Yes To Haven",
+          "imgSrc": "https://i1.sndcdn.com/artworks-DadGacyEqvQcYE91-OQW7eg-t500x500.jpg",
+          "_id": "66773a6540764369918229c2"
+        },
+        {
+          "songName": "Lana Del Rey",
+          "title": "Born To Die",
+          "imgSrc": "https://i.scdn.co/image/ab67616d0000b273b97b5f6b46c3f4af071e7331",
+          "_id": "66773a6540764369918229c3"
+        },
+        {
+          "songName": "Lana Del Rey",
+          "title": "Young And Beautiful",
+          "imgSrc": "https://i.ytimg.com/vi/o_1aF54DO60/maxresdefault.jpg",
+          "_id": "66773a6540764369918229c4"
+        },
+        {
+          "songName": "Lana Del Rey",
+          "title": "West Coast",
+          "imgSrc": "https://upload.wikimedia.org/wikipedia/en/c/c1/Lana_Del_Rey_-_West_Coast.png",
+          "_id": "66773a6540764369918229c5"
+        },
+        {
+          "songName": "Lana Del Rey",
+          "title": "Video Games",
+          "imgSrc": "https://upload.wikimedia.org/wikipedia/en/c/cf/Lana_Del_Rey_-_Video_Games_single_cover.png",
+          "_id": "66773a6540764369918229c6"
+        }
+      ],
+      "createdAt": "2024-06-22T20:56:05.267Z",
+      "updatedAt": "2024-06-22T20:56:05.267Z",
+      "__v": 0
+    }
+  ]
+}

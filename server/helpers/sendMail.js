@@ -19,9 +19,9 @@ async function sendVerifyEmail(email, token) {
   const mailData = {
     from: process.env.EMAIL_USER,
     to: email,
-    subject: "Verify your Account (Blog App)",
+    subject: "Verify your Account (Hoyts Cinema site)",
     text: "That was easy!",
-    html: `Click <b style="color:red;">here</b> to verify your account: http://localhost:5050/api/verify/${token}`,
+    html: `Click <b style="color:red;">here</b> to verify your account: http://localhost:6060/verify/${token}`,
   };
 
   await transporter.sendMail(mailData);

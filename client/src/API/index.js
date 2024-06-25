@@ -42,6 +42,15 @@ export async function getOne(endpoint, id, token) {
     return error;
   }
 }
+// export async function post(endpoint, payload) {
+//   try {
+//     const response = await axios.post(BASE_URL + endpoint, payload);
+//     return response.data;
+//   } catch (error) {
+//     return error;
+//   }
+// }
+
 
 //delete
  export async function deleteOne(endpoint, id, token) {
@@ -85,15 +94,15 @@ export async function patch(endpoint, id, payload, token) {
   }
 }
 
-//login
+// login
 
-// // const controller = {
-// //   post: post,
-// //   getAll: getAll,
-// //   getOne: getOne,
-// //   delete: deleteOne,
-// //   put: put,
-// //   patch: patch,
-// // };
+const controller = {
+  post: post,
+  getAll: getAll,
+  getOne: getOne,
+  delete: deleteOne,
+  put: put,
+  patch: patch,
+};
 
-// export default controller;
+export default controller;

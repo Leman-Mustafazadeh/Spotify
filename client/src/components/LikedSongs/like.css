@@ -1,0 +1,113 @@
+.popular .popular_item {
+    display: flex;
+  }
+  .popular {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+  .popular_left {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+ .heart_head{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color:#31275E;
+    border-radius: 5px;
+
+ }
+.heart_icon{
+    background-color: #867EE5;
+    width: 14%;
+    height: 150px;
+    margin: 10px;
+    border-radius: 5px;
+}
+.heart_icon i{
+   font-size: 60px;
+   color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.heart_title p{
+color: white;
+font-size: 2rem;
+}
+.heart_title h1{
+    color: white;
+    font-weight: 700;
+    font-size: 5rem;
+    }
+    
+.musics{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 30px;
+    background-color: #1D1634;
+  }
+  .music_like_head{
+    display: flex;
+  align-items: center;
+  gap: 10px;
+  }
+  .music_like_img{
+    width: 50px;
+    height: 50px;
+  }
+  .music_like_img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+  .music_like_title p{
+  font-size: 14px;
+  font-weight: 600;
+  }
+  .music_like_title span{
+    font-size: 12px;
+    font-weight: 600;
+   color: rgb(180, 164, 164); 
+    }
+  
+  .music_like{
+    display: flex;                                               
+    align-items: center;
+    justify-content: space-between;
+  }
+  .music_like button{
+    padding: 5px 10px;
+    width: 7%;
+    border-radius: 25px;
+    background-color: black;
+    color: white;
+    border-color: transparent;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .likes_button{
+    border: 1px solid white;
+    padding:0 5px;
+    text-align: center;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+  }
+  .music_like_wrap{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }

@@ -8,12 +8,12 @@ const playlist_controller = {
     else list = await PlaylistModel.find();
 
     if (list.length > 0) {
-      res.status(200).send({
+      res.json({
         message: "success",
         data: list,
       });
     } else {
-      res.status(204).send({
+      res.json({
         message: "not found",
         data: null,
       });

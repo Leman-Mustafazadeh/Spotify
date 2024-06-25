@@ -1,0 +1,13 @@
+body{
+    background-color: black;
+    font-family: sans-serif;
+}
+
+
+:where(.css-dev-only-do-not-override-m4timi).ant-form-item .ant-form-item-label >label {
+    color: white !important;
+}
+
+:where(.css-dev-only-do-not-override-m4timi).ant-input-outlined{
+    color: black!important;
+}

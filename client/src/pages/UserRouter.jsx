@@ -8,6 +8,7 @@ const UserRouter = () => {
   return (
     <div>
      <PopularLeft/>
+     <Outlet/>
      <Player/>
     </div>
   )

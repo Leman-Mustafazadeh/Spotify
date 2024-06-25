@@ -1,50 +1,109 @@
-.player{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: black;
+.player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: black;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  bottom: 0;
+  /* height: 40vh; */
 }
-.play_button{
-    border: 1px solid white;
-    background-color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+.play_button {
+  border: 1px solid white;
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
-.play_button i{
-    font-size: 20px;
-
+.play_button i {
+  font-size: 20px;
+}
+.play_between {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.play_shuffle i {
+  font-size: 25px;
+  color: gray;
+  cursor: pointer;
+}
+.play_shuffle span:hover {
+  color: white;
+  cursor: pointer;
+}
+.prev_play span {
+  font-size: 25px;
+  color: gray;
+  cursor: pointer;
+}
+.prev_play i:hover {
+  color: white;
+}
+.repeat_play i {
+  font-size: 25px;
+  color: gray;
+  cursor: pointer;
+}
+.repeat_play i:hover {
+  color: white;
+}
+.left_title {
+  position: relative;
+  left: 20px;
+  cursor: pointer;
+}
+.left_icon {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  display: none;
+  background-color: dimgray;
+  border-radius: 50%;
+  padding: 5px;
+}
+.left_img {
+  position: relative;
+}
+.left_img:hover .left_icon {
+  display: block;
+}
+.screen_title{
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+ margin:0 auto;
+text-align: center;
 }
 .play_between{
-    display: flex;
-    align-items: center;
-    gap: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.play_shuffle i{
-font-size: 25px;
-color: gray;
-cursor: pointer;
+.bgcImg{
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  opacity: 30;
+  background-repeat: no-repeat;
 }
-.play_shuffle i:hover{
-    color: white;
+.screen_item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.prev_play i{
-    font-size: 25px;
-    color: gray;
-    cursor: pointer;
+.play_head{
+margin: 0 auto
 }
-.prev_play i:hover{
-    color: white;
+.like_icon{
+  border: 1px solid gray;
+  border-radius: 50%;
+  padding:3px 5px;
 }
-.repeat_play i{
-    font-size: 25px;
-    color: gray;
-    cursor: pointer;
-    }
-    .repeat_play i:hover{
-        color: white;
-    }

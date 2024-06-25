@@ -10,7 +10,9 @@ function authenticateToken(req, res, next) {
         message: 'Provide Token'
       });
     }
+  
     const result = verifyAccessToken(token);
+  
     if (!result.success) {
       return res.status(403).json({ error: result.error });
     }
