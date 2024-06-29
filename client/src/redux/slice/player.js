@@ -96,6 +96,6 @@ export const { setCurrent,
     hundlePlayFind,
     handleMusicData,
     editPlayerData,
-    editPlayerData2 } = playerSlice.actions
+    editPlayerData2,hundleSearchDAta } = playerSlice.actions
 
 export default playerSlice.reducer

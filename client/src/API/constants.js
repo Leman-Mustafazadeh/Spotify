@@ -4,6 +4,6 @@ export const endpoints = {
     playlist: '/playlist',
     users: '/user',
     music:'/music',
-    like:'/like'
+    like:'/like',
     // reports: '/reports'
 }

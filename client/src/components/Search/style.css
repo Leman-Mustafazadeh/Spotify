@@ -27,7 +27,33 @@ input {
 }
 .search_icon{
     position: relative;
-    top: 3
-    px;
+    top: 3px;
     left: 40px;
+}
+.search_wrap {
+  position: relative;
+  border-radius: 5px;
+  height: 150px;
+}
+.search_wrap img{
+ width: 100px;
+ height: 100px;
+ object-fit: cover;
+ position: absolute;
+ right: 0;
+ border-radius: 5px;
+ bottom: 0;
+}
+.search_wrap p{
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 900;
+}
+.headSearch{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 30px;
 }

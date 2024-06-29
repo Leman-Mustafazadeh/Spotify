@@ -3,11 +3,13 @@ const mongoose = require("mongoose");
 const songSchema = new mongoose.Schema(
   {
     userId: String,
-    imgSrc: String,
     artist: String,
-    musicSrc: String,
     name: String,
-    genre:String
+    genre:String,
+    musicSrc: String,
+    imgSrc: String,
+    color:String,
+    photo:String
   },
   { timestamps: true }
 );

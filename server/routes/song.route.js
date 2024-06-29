@@ -15,6 +15,7 @@ song_router.post(
   upload.fields([
     { name: "musicSrc", maxCount: 1 },
     { name: "imgSrc", maxCount: 1 },
+    { name: "photo", maxCount: 1 },
   ]),
   controller.song.post
 );

@@ -68,6 +68,8 @@ const song_controller = {
         song.musicSrc = audio;
         const img = "http://localhost:6060/uploads/" + req.files.imgSrc[0].filename;
         song.imgSrc = img;
+        const photo = "http://localhost:6060/uploads/" + req.files.photo[0].filename;
+        song.photo = photo;
       }
       await song.save();
       res.status(201).json({
