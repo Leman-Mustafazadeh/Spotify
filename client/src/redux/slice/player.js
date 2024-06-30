@@ -9,9 +9,10 @@ const initialState = {
     allDAta: [],
     playerData: [],
     playList: [],
-    playFind:{},
+    playFind: {},
     musicData: [],
-    likeSongs:[]
+    likeSongs: [],
+    nextSongCount:0
 }
 
 export const playerSlice = createSlice({
@@ -70,18 +71,52 @@ export const playerSlice = createSlice({
         hundlePlayFind: (state, action) => {
             state.playFind = state.playList.find(play => play.id === action.payload)
         },
-        editPlayerData:(state,action)=>{
+        editPlayerData: (state, action) => {
             state.playList = action.payload
         },
         handleMusicData: (state, action) => {
             state.musicData = action.payload;
         },
-        handleLikedData:(state,action)=>{
-            state.likeSongs=action.payload
+        handleLikedData: (state, action) => {
+            state.likeSongs = action.payload
         },
         editPlayerData2: (state, action) => {
             state.playFind = action.payload;
-        }
+        },
+        handleLikeSongs: (state, action) => {
+            state.allDAta.map(item => {
+                if (item._id === action.payload) {
+                    if (!state.likeSongs.some(likeSong => likeSong._id === item._id)) {
+                        state.likeSongs.push({...item,playing: false});
+                    }
+                }
+            });
+        },
+        playLikeSong: (state, action) => {
+            state.allDAta.map(item=>{
+                if(item._id === action.payload){
+                    state.current = item
+                }
+            });
+
+            state.likeSongs.map(likeSong =>{
+                if(likeSong._id === action.payload){
+                    likeSong.playing = !likeSong.playing
+                }
+
+                return likeSong
+            })
+        },
+        handleNextSong: (state, action) => {
+           state.nextSongCount++;
+           state.current = state.allDAta[state.nextSongCount]
+        },
+        handlePrevSong: (state, action) => {
+           if(state.nextSongCount < 2)
+            state.nextSongCount = 1
+            state.nextSongCount--;
+            state.current = state.allDAta[state.nextSongCount]
+         }
     }
 })
 
@@ -96,6 +131,11 @@ export const { setCurrent,
     hundlePlayFind,
     handleMusicData,
     editPlayerData,
-    editPlayerData2,hundleSearchDAta } = playerSlice.actions
+    editPlayerData2,
+    hundleSearchDAta,
+    handleLikeSongs,
+    playLikeSong,
+    handleNextSong,
+    handlePrevSong } = playerSlice.actions
 
 export default playerSlice.reducer

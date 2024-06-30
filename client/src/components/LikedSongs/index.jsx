@@ -4,12 +4,16 @@ import Navigation from "../Navigation";
 import "./like.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useAudio, useFullscreen, useToggle } from "react-use";
-import { setControls } from "../../redux/slice/player";
+import { playLikeSong, setControls } from "../../redux/slice/player";
+
+
 const LikedSongs = () => {
   const { allDAta,current } = useSelector((state) => state.player);
   const [audio, state, controls, ref] = useAudio({
     src: current?.musicSrc
   });
+
+  console.log(current.musicSrc);
 
   const screenRef = useRef(null);
   const [show, toggle] = useToggle(false);
@@ -20,17 +24,25 @@ const LikedSongs = () => {
   const [isPlaying, setIsPlaying] = useState(false); 
   
   const togglePlay = () => {
+    
     if (controls) {
+      
       if (isPlaying) {
+       
         controls.pause(); 
       } else {
+       
         controls.play();
       }
       setIsPlaying(!isPlaying); 
     }
   };
+
+
   useEffect(() => {
+    console.log(current,controls);
     if (controls && current) {
+      
       dispatch(setControls(controls));
       controls.play(); 
       setIsPlaying(true); 
@@ -71,11 +83,12 @@ const LikedSongs = () => {
       <div className="musics">
         {likeSongs.map((item) => (
           <div className="music_like_wrap">
-            <span onClick={togglePlay} className="likes_button">
+            <span style={{position:"relative",zIndex:"10000"}} onClick={()=>dispatch(playLikeSong(item._id))} className="likes_button">
               <i style={{fontSize:'17px',color:'white'}}
-                className={isPlaying ? "fa-solid fa-pause" : "fa-solid fa-play"}
+                className={item._id === current._id ? "fa-solid fa-pause" : "fa-solid fa-play"}
               ></i>
             </span>
+          {/*   {audio} */}
             <div className="music_like">
               <div className="music_like_head">
                 <div className="music_like_img">

@@ -5,7 +5,7 @@ import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import QueueMusicRoundedIcon from "@mui/icons-material/QueueMusicRounded";
 import CustomRange from "./Range";
 import { useDispatch, useSelector } from "react-redux";
-import { setControls, setCurrent, setSideBar } from "../../redux/slice/player";
+import { handleLikeSongs, handleNextSong, handlePrevSong, setControls, setCurrent, setSideBar } from "../../redux/slice/player";
 import FullScreen from "./FullScreen";
 
 const Player = () => {
@@ -14,6 +14,8 @@ const Player = () => {
   const [audio, state, controls, ref] = useAudio({
     src: current?.musicSrc
   });
+
+  console.log(current,"CONTROLLLLL");
 
   const screenRef = useRef(null);
   const [show, toggle] = useToggle(false);
@@ -28,6 +30,8 @@ const Player = () => {
       dispatch(setControls(controls));
       controls.play(); 
       setIsPlaying(true); 
+    }else{
+      controls.pause();
     }
   }, [dispatch,  current]);
 
@@ -65,8 +69,6 @@ const Player = () => {
     );
   };
 
-  const handleLike =(item)=>{
-  }
 
   
   function secondsToTime(seconds) {
@@ -111,7 +113,7 @@ const Player = () => {
               <h5 style={{ width: "150px" }}>{current.title}</h5>
               <p style={{ width: "150px" }}>{current.artist}</p>
             </div>
-            <p className="like_icon" onClick={()=>handleLike(item)}><i class="fa-solid fa-plus"></i></p>
+            <p className="like_icon" onClick={()=>dispatch(handleLikeSongs(current._id))}><i className="fa-solid fa-plus"></i></p>
           </div>
         )}
       </div>
@@ -125,7 +127,7 @@ const Player = () => {
             <span className="fa-solid fa-shuffle"></span>
           </p>
 
-          <p className="prev_play">
+          <p onClick={()=>dispatch(handlePrevSong())} className="prev_play">
             <span className="fa-solid fa-backward"></span>
           </p>
           <span
@@ -138,10 +140,10 @@ const Player = () => {
               }
             ></i>
           </span>
-          <p className="prev_play">
+          <p onClick={()=>dispatch(handleNextSong())} className="prev_play">
             <span className="fa-solid fa-forward"></span>
           </p>
-          <p className="repeat_play">
+          <p  className="repeat_play">
             <span className="fa-solid fa-repeat"></span>
           </p>
         </div>
