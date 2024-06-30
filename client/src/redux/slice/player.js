@@ -135,6 +135,7 @@ export const { setCurrent,
     hundleSearchDAta,
     handleLikeSongs,
     playLikeSong,
+    handleLikedData,
     handleNextSong,
     handlePrevSong } = playerSlice.actions
 

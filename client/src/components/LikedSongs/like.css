@@ -53,6 +53,21 @@ font-size: 2rem;
     gap: 20px;
     padding-top: 30px;
     background-color: #1D1634;
+    position: relative;
+  }
+  .music_like{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .music_like i{
+    color: white;
+    font-size: 20px;
+    padding-right: 50px;
+    position: absolute;
+    z-index: 1000;
+    cursor: pointer;
   }
   .music_like_head{
     display: flex;

@@ -18,7 +18,7 @@ const Login = () => {
 
   useEffect(() => {
     if (user.id) {
-      navigate("/");
+      navigate("/login");
     }
   }, [navigate, user]);
 
@@ -80,7 +80,8 @@ const Login = () => {
       </div>
 
       <form onSubmit={formik.handleSubmit} className="login_form">
-        <TextField  style={{ borderColor: "white", outline: "white", margin: "20px 0" }}
+      <label htmlFor="email">Email</label>
+        <TextField  style={{ borderColor: "white",color:'white', outline: "white", margin: "20px 0" }}
           fullWidth
           id="email"
           name="email"
@@ -92,8 +93,9 @@ const Login = () => {
           error={formik.touched.email && Boolean(formik.errors.email)}
           helperText={formik.touched.email && formik.errors.email}
         />
+          <label htmlFor="password">Password</label>
 
-        <TextField  style={{ borderColor: "white", outline: "white", margin: "20px 0" }}
+        <TextField  style={{ borderColor: "white",color:'white', outline: "white", margin: "20px 0" }}
           fullWidth
           id="password"
           name="password"

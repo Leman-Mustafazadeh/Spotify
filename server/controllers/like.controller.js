@@ -70,7 +70,7 @@ const like_controller = {
         song.imgSrc = img;
       }
       await song.save();
-      res.status(201).json({
+      res.json({
         message: "posted",
         data: song,
       });

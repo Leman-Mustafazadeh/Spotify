@@ -71,3 +71,6 @@ p {
   font-size: 1rem;
 }
 
+.login_form label{
+  color: white;
+}
