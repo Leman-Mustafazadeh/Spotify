@@ -7,15 +7,17 @@ import CustomRange from "./Range";
 import { useDispatch, useSelector } from "react-redux";
 import { handleLikeSongs, handleNextSong, handlePrevSong, setControls, setCurrent, setSideBar } from "../../redux/slice/player";
 import FullScreen from "./FullScreen";
+import { useNavigate } from "react-router-dom";
 
 const Player = () => {
   const { current, sideBar } = useSelector((state) => state.player);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const navigate = useNavigate(); 
+
   const [audio, state, controls, ref] = useAudio({
     src: current?.musicSrc
   });
-
-  console.log(current,"CONTROLLLLL");
 
   const screenRef = useRef(null);
   const [show, toggle] = useToggle(false);
@@ -30,10 +32,10 @@ const Player = () => {
       dispatch(setControls(controls));
       controls.play(); 
       setIsPlaying(true); 
-    }else{
+    } else {
       controls.pause();
     }
-  }, [dispatch,  current]);
+  }, [dispatch, current]);
 
   const togglePlay = () => {
     if (controls) {
@@ -69,8 +71,6 @@ const Player = () => {
     );
   };
 
-
-  
   function secondsToTime(seconds) {
     return new Date(1000 * seconds).toISOString().substr(14, 5);
   }
@@ -103,31 +103,29 @@ const Player = () => {
               src={current.imgSrc}
               alt=""
             />
-            {/* <div
-              className="left_icon"
-              onClick={() => dispatch(setSideBar(true))}
-            >
-              <span className="fa-solid fa-chevron-down"></span>
-            </div> */}
             <div>
               <h5 style={{ width: "150px" }}>{current.title}</h5>
               <p style={{ width: "150px" }}>{current.artist}</p>
             </div>
-            <p className="like_icon" onClick={()=>dispatch(handleLikeSongs(current._id))}><i className="fa-solid fa-plus"></i></p>
+            <p className="like_icon" onClick={() => {
+              if (user.id != null && user.role === 'client') {
+                dispatch(handleLikeSongs(current._id));
+              } else {
+                navigate("/login"); // Navigate to login page if not logged in
+              }
+            }}>
+              <i className="fa-solid fa-plus"></i>
+            </p>
           </div>
         )}
       </div>
-
-
-
 
       <div>
         <div className="play_between">
           <p className="play_shuffle">
             <span className="fa-solid fa-shuffle"></span>
           </p>
-
-          <p onClick={()=>dispatch(handlePrevSong())} className="prev_play">
+          <p onClick={() => dispatch(handlePrevSong())} className="prev_play">
             <span className="fa-solid fa-backward"></span>
           </p>
           <span
@@ -140,10 +138,10 @@ const Player = () => {
               }
             ></i>
           </span>
-          <p onClick={()=>dispatch(handleNextSong())} className="prev_play">
+          <p onClick={() => dispatch(handleNextSong())} className="prev_play">
             <span className="fa-solid fa-forward"></span>
           </p>
-          <p  className="repeat_play">
+          <p className="repeat_play">
             <span className="fa-solid fa-repeat"></span>
           </p>
         </div>
@@ -164,7 +162,6 @@ const Player = () => {
             value={state?.time}
             onChange={(value) => controls.seek(value)}
           />
-
           <div style={{ color: "white" }}>{secondsToTime(state?.duration)}</div>
         </div>
       </div>
@@ -173,11 +170,9 @@ const Player = () => {
         <p className="prev_play">
           <span className="fa-solid fa-microphone" style={{ color: "white" }}></span>
         </p>
-
         <p className="prev_play">
           <QueueMusicRoundedIcon style={{ color: "white" }} />
         </p>
-
         <p className="prev_play">
           <span className="fa-solid fa-mobile" style={{ color: "white" }}></span>
         </p>
@@ -187,7 +182,6 @@ const Player = () => {
         >
           {volumeIcon()}
         </p>
-
         <div style={{ width: "5rem" }}>
           <CustomRange
             step={0.01}
@@ -200,14 +194,12 @@ const Player = () => {
             }}
           />
         </div>
-
         <p onClick={() => toggle()}>
           <span
             className="fa-solid fa-expand"
             style={{ color: "white", fontSize: "20px" }}
           ></span>
         </p>
-
         <div ref={screenRef} onClick={(e) => e.stopPropagation()}>
           {isFullscreen && (
             <FullScreen toggle={toggle} state={state} controls={controls} />

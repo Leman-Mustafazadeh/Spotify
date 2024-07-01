@@ -5,10 +5,9 @@ import FormCom from '../FormCom'
 import { useSelector } from 'react-redux'
 
 const PlayList = () => {
+
   const { playFind } = useSelector(state => state.player)
-
-
-
+console.log(playFind);
   return (
     <div className="home_right home_right2">
       <div className="popular">

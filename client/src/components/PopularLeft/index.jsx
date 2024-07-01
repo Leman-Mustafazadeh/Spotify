@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Popular from "../Popular";
 import PlaylistPage from "../PlaylistPage";
 import Navigation from "../Navigation";
@@ -10,6 +10,9 @@ import { hundlePlayList } from "../../redux/slice/player";
 
 const PopularLeft = () => {
   const dispatch = useDispatch();
+  const { playList } = useSelector((state) => state.player);
+  const user = useSelector((state) => state.user);
+  const navigate = useNavigate(); 
   let playListId = 0;
 
   const CreatePlayListFunc = () => {
@@ -20,7 +23,7 @@ const PopularLeft = () => {
       img: "",
       textarea: "My Playlist",
     };
-    dispatch(hundlePlayList(myPlayList));
+    dispatch(hundlePlayList([...playList, myPlayList]));
   };
 
   return (
@@ -71,10 +74,24 @@ const PopularLeft = () => {
             <p><Link to={'/library'} style={{textDecoration:'none',color:'white',fontSize:'20px'}}>Your Library</Link></p>
           </div> */}
 
-             
+{/* <p className="like_icon" onClick={() => {
+              if (user.id != null && user.role === 'client') {
+                dispatch(handleLikeSongs(current._id));
+              } else {
+                navigate("/login"); // Navigate to login page if not logged in
+              }
+            }}> */}
+
+
+
+
               <div className="home_item">
                 <i
-                  onClick={() => CreatePlayListFunc()}
+                  onClick={() =>{ if(user.id!==null && user.role==="client"){
+                    CreatePlayListFunc()
+                  }else{
+                    navigate("/login");
+                  }} }
                   style={{ cursor: "pointer", textDecoration: "none" }}
                   className="fas fa-plus-square"
                 ></i>
@@ -89,10 +106,21 @@ const PopularLeft = () => {
                 </p>
               </div>
 
-               <div className="home_item library">
-               <i class="fa-solid fa-heart"></i>
-            <p><Link to={'/likedsongs'} style={{textDecoration:'none',color:'white',fontSize:'20px'}}>Liked Songs</Link></p>
-          </div>
+              <div className="home_item library">
+                <i class="fa-solid fa-heart"></i>
+                <p>
+                  <Link
+                    to={"/likedsongs"}
+                    style={{
+                      textDecoration: "none",
+                      color: "white",
+                      fontSize: "20px",
+                    }}
+                  >
+                    Liked Songs
+                  </Link>
+                </p>
+              </div>
               <PlaylistPage />
             </div>
           </div>

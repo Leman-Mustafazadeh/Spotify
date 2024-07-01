@@ -5,7 +5,7 @@ import { ROUTER } from './routes/ROUTES'
 import { useDispatch } from 'react-redux'
 import { getAll } from './API'
 import { endpoints } from './API/constants'
-import {  handleLikedData, handleMusicData, hundleAllDAta, hundleSearchDAta } from './redux/slice/player'
+import {  handleLikedData, handleMusicData, hundleAllDAta, hundlePlayList } from './redux/slice/player'
 function App() {
   const routesa = createBrowserRouter(ROUTER);
   const dispatch = useDispatch();
@@ -23,10 +23,12 @@ function App() {
   }, []);
 
   useEffect(() => {
-    getAll(endpoints.search).then((res) => {
-      dispatch(hundleSearchDAta(res.data));
+    getAll(endpoints.playlist).then((res) => {
+      dispatch(hundlePlayList(res.data));
     });
   }, []);
+  
+  
 
   useEffect(() => {
     getAll(endpoints.like).then((res) => {

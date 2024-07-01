@@ -62,13 +62,25 @@ const playlist_controller = {
       response: response,
     });
   },
-  post: async (req, res) => {
-    const lists = new PlaylistModel(req.body);
-    await lists.save();
-    res.send({
-      message: "posted",
-      data: lists,
-    });
+  post: async (req, res) => { 
+    try {
+      const song = new PlaylistModel(req.body);
+
+      if (req.files && req.files.img) {
+        const img = "http://localhost:6060/uploads/" + req.files.img[0].filename;
+        song.img = img;
+      }
+      await song.save();
+      res.json({
+        message: "posted",
+        data: song,
+      });
+    } catch (error) {
+      console.log(error);
+      res.json({
+        error: error.message,
+      });
+    }
   },
 };
 

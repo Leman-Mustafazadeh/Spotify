@@ -10,11 +10,13 @@ import {
   getPlayerData,
   editPlayerData,
   editPlayerData2,
+  hundlePlayList,
 } from "../../redux/slice/player";
 import { endpoints } from "../../API/constants";
 import { getAll, post } from "../../API";
 
 const FormCom = ({ playFind }) => {
+  console.log(playFind);
   console.log(playFind.id, "playFind");
   const [input, setInput] = useState("");
   const [textarea, setTextarea] = useState("");
@@ -40,39 +42,41 @@ const FormCom = ({ playFind }) => {
   const normFile = (e) => {
     e.preventDefault();
     let img = URL.createObjectURL(upload?.files[0]);
-    const editPlayer = playList.map((item) => {
-      if (item.id === playFind.id) {
-        return {
-          ...item,
-          img: img,
-          name:textarea ,
-          textarea:  input,
-        };
-      }
-      return item;
-    });
+    // const editPlayer = playList.map((item) => {
+    //   if (item.id === playFind.id) {
+    //     return {
+    //       ...item,
+    //       img: img,
+    //       name: textarea,
+    //       textarea: input,
+    //     };
+    //   }
+    //   return item;
+    // });
 
-    dispatch(
-      editPlayerData2(editPlayer.find((play) => play.id === playFind.id))
-    );
-    dispatch(editPlayerData(editPlayer));
+    // dispatch(
+    //   editPlayerData2(editPlayer.find((play) => play.id === playFind.id))
+    // );
+    // dispatch(editPlayerData(editPlayer));
     const playerObj = {
       name: input,
       textarea: textarea,
       img: img,
     };
 
-    dispatch(getPlayerData(playerObj));
+    // dispatch(getPlayerData([...playList, playerObj]));
 
     post(endpoints.playlist, playerObj);
     form.resetFields(); // Formu sıfırla
-
+    getAll(endpoints.playlist).then((res) => {
+      dispatch(hundlePlayList(res.data));
+    });
     // State'leri sıfırla
     setInput("");
     setTextarea("");
     setUpload(null);
   };
- 
+
   // const [filter, setFilter] = useState(menu)
   // const handleSubmit = (inpValue) => {
   //   const search = menu.filter((x) => x.name.toLowerCase().trim().includes(inpValue.toLowerCase().trim()))
@@ -81,24 +85,22 @@ const FormCom = ({ playFind }) => {
   // useEffect(() => {
   //   setFilter(menu)
   // }, [menu])
-  const { allDAta } = useSelector(state => state.player)
+  const { allDAta } = useSelector((state) => state.player);
   const [filter, setFilter] = useState(allDAta);
 
-
-  
-
   const handleSearch = (inpValue) => {
-    const search = allDAta.filter((x)=>x.songName.toLowerCase().trim().includes(inpValue.toLowerCase().trim()))
-    setFilter(search)
+    const search = allDAta.filter((x) =>
+      x.name.toLowerCase().trim().includes(inpValue.toLowerCase().trim())
+    );
+    setFilter(search);
   };
-  useEffect(()=>{
-    setFilter(allDAta)
-  },[allDAta])
+  useEffect(() => {
+    setFilter(allDAta);
+  }, [allDAta]);
 
   const [componentDisabled, setComponentDisabled] = useState(false);
   return (
     <div className="formCom">
-      
       <Form onSubmitCapture={normFile}>
         <div className="com_head">
           <InputFileUpload setUpload={setUpload} />
@@ -144,19 +146,19 @@ const FormCom = ({ playFind }) => {
 
         <div className="music">
           {filter.map((item) => (
-          <div className="music_wrap">
-            <div className="music_head">
-              <div className="music_img">
-                <img src={item.imgSrc} alt="" />
+            <div className="music_wrap">
+              <div className="music_head">
+                <div className="music_img">
+                  <img src={item.imgSrc} alt="" />
+                </div>
+                <div className="music_title">
+                  <p>{item.artist}</p>
+                  <span>{item.name}</span>
+                </div>
               </div>
-              <div className="music_title">
-                <p>{item.artist}</p>
-                <span>{item.name}</span>
-              </div>
-            </div>
 
-            <button >Add</button>
-          </div>
+              <button>Add</button>
+            </div>
           ))}
         </div>
       </div>

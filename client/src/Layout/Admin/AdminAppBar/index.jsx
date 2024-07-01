@@ -7,7 +7,7 @@ const AdminAppBar = () => {
       <nav className="nav">
         <div className="logo">
           <Link>
-            <h1>Admin Panel</h1>
+            <h1 style={{color:"gray"}}>Admin Panel</h1>
           </Link>
         </div>
         <ul>
