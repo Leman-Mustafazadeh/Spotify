@@ -7,7 +7,7 @@ const AdminRoot = () => {
     <>
       <div style={{ display: "flex" }}>
         <AdminAppBar className='appbar' />
-        <div style={{ width: "calc(100% - 272px)" }}>
+        <div >
           {/* <Header /> */}
           <Outlet />
         </div>

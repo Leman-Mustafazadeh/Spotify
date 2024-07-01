@@ -11,3 +11,6 @@ body{
 :where(.css-dev-only-do-not-override-m4timi).ant-input-outlined{
     color: black!important;
 }
+#root{
+    width: 100%;
+}

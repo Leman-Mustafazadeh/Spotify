@@ -10,10 +10,10 @@ import FullScreen from "./FullScreen";
 import { useNavigate } from "react-router-dom";
 
 const Player = () => {
-  const { current, sideBar } = useSelector((state) => state.player);
+  const { current, sideBar, allDAta } = useSelector((state) => state.player);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const [audio, state, controls, ref] = useAudio({
     src: current?.musicSrc
@@ -25,31 +25,68 @@ const Player = () => {
     onClose: () => toggle(false),
   });
 
-  const [isPlaying, setIsPlaying] = useState(false); 
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [shuffleMode, setShuffleMode] = useState(false); // State for shuffle mode
+  const [shuffledPlaylist, setShuffledPlaylist] = useState([]); // State for shuffled playlist
 
   useEffect(() => {
     if (controls && current) {
       dispatch(setControls(controls));
-      controls.play(); 
-      setIsPlaying(true); 
+      controls.play();
+      setIsPlaying(true);
     } else {
       controls.pause();
     }
   }, [dispatch, current]);
 
+  useEffect(() => {
+    if (shuffleMode && allDAta) {
+      const shuffledSongs = shuffleArray(allDAta.filter(song => song._id !== current?._id));
+      setShuffledPlaylist(shuffledSongs);
+      dispatch(setCurrent(shuffledSongs[0]));
+    } else {
+      setShuffledPlaylist([]);
+    }
+  }, [shuffleMode]);
+  
+
   const togglePlay = () => {
     if (controls) {
       if (isPlaying) {
-        controls.pause(); 
+        controls.pause();
       } else {
         controls.play();
       }
-      setIsPlaying(!isPlaying); 
+      setIsPlaying(!isPlaying);
     }
   };
 
+  const toggleShuffle = () => {
+    setShuffleMode(!shuffleMode); // Toggle shuffle mode
+  };
+
+  const shuffleArray = (array) => {
+    if (!array || array.length === 0) {
+      return [];
+    }
+  
+    let currentIndex = array.length, temporaryValue, randomIndex;
+    let newArray = array.slice(); // Create a shallow copy of the array
+  
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      temporaryValue = newArray[currentIndex];
+      newArray[currentIndex] = newArray[randomIndex];
+      newArray[randomIndex] = temporaryValue;
+    }
+  
+    return newArray;
+  }
+  
   const volumeIcon = () => {
-    if (!state) return null; 
+    if (!state) return null;
 
     if (state.volume === 0 || state.muted)
       return (
@@ -86,43 +123,44 @@ const Player = () => {
         }}
         className="left_title"
       >
-        {sideBar && (
-          <div
-            style={{
-              width: "200px",
-              height: "100px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "3px",
-            }}
-            className="left_img"
-          >
-            <img
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              src={current.imgSrc}
-              alt=""
-            />
-            <div>
-              <h5 style={{ width: "150px" }}>{current.title}</h5>
-              <p style={{ width: "150px" }}>{current.artist}</p>
-            </div>
-            <p className="like_icon" onClick={() => {
-              if (user.id != null && user.role === 'client') {
-                dispatch(handleLikeSongs(current._id));
-              } else {
-                navigate("/login"); // Navigate to login page if not logged in
-              }
-            }}>
-              <i className="fa-solid fa-plus"></i>
-            </p>
-          </div>
-        )}
+       {sideBar && current && current.imgSrc && (
+  <div
+    style={{
+      width: "200px",
+      height: "100px",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      gap: "3px",
+    }}
+    className="left_img"
+  >
+    <img
+      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+      src={current.imgSrc}
+      alt=""
+    />
+    <div>
+      <h5 style={{ width: "150px" }}>{current.title}</h5>
+      <p style={{ width: "150px" }}>{current.artist}</p>
+    </div>
+    <p className="like_icon" onClick={() => {
+      if (user.id != null && user.role === 'client') {
+        dispatch(handleLikeSongs(current._id));
+      } else {
+        navigate("/login"); // Navigate to login page if not logged in
+      }
+    }}>
+      <i className="fa-solid fa-plus"></i>
+    </p>
+  </div>
+)}
+
       </div>
 
       <div>
         <div className="play_between">
-          <p className="play_shuffle">
+          <p className={`play_shuffle ${shuffleMode ? "active" : ""}`} onClick={toggleShuffle}>
             <span className="fa-solid fa-shuffle"></span>
           </p>
           <p onClick={() => dispatch(handlePrevSong())} className="prev_play">
@@ -167,15 +205,6 @@ const Player = () => {
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-        <p className="prev_play">
-          <span className="fa-solid fa-microphone" style={{ color: "white" }}></span>
-        </p>
-        <p className="prev_play">
-          <QueueMusicRoundedIcon style={{ color: "white" }} />
-        </p>
-        <p className="prev_play">
-          <span className="fa-solid fa-mobile" style={{ color: "white" }}></span>
-        </p>
         <p
           className="prev_play"
           onClick={() => controls[state.muted ? "unmute" : "mute"]()}

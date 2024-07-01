@@ -54,6 +54,7 @@ font-size: 2rem;
     padding-top: 30px;
     background-color: #1D1634;
     position: relative;
+    height: 100vh;
   }
   .music_like{
     display: flex;

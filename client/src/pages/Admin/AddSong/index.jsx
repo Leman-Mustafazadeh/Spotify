@@ -1,70 +1,122 @@
-import React, { useState } from "react";
-import { Form, Input, Upload } from "antd";
-const { TextArea } = Input;
-import InputFileUpload from "../../../components/Upload";
-import { useDispatch, useSelector } from "react-redux";
-import "./addsong.css";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-const normFile = (e) => {
-  if (Array.isArray(e)) {
-    return e;
-  }
-  return e?.fileList;
-};
+const AddSongs = () => {
+  const { allDAta } = useSelector(state => state.player);
+  const initialFormData = {
+    artist: '',
+    name: '',
+    genre: '',
+    musicSrc: '',
+    imgSrc: '',
+    photo: ''
+  };
+  const [formData, setFormData] = useState(initialFormData);
 
-const AddSong = ({ playFind }) => {
-  const [input, setInput] = useState("");
-  const [textarea, setTextarea] = useState("");
-  const [upload, setUpload] = useState({});
-  const [upload2, setUpload2] = useState("");
-  const { playList } = useSelector((state) => state.player);
-  const dispatch = useDispatch();
-  const [form] = Form.useForm();
-  const [componentDisabled, setComponentDisabled] = useState(true);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const url = 'http://localhost:6060/songs';
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        console.log('Song added successfully!');
+        setFormData(initialFormData); // Formu sıfırla
+      } else {
+        console.error('Failed to add song');
+      }
+    } catch (error) {
+      console.error('Error adding song:', error);
+    }
+  };
 
   return (
-    <div className="addsong">
-      <Form onSubmitCapture={normFile}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            width: "30%",
-            padding: "20px 0 0 20px",
-          }}
-        >
-          <InputFileUpload setUpload={setUpload} />
-
-          <div className="formCom_title">
-            <Form.Item
-              style={{ color: "white", margin: "10px 0" }}
-              label="Name"
-            >
-              <Input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                style={{
-                  color: "white",
-                  width: "100%",
-                }}
-              />
-            </Form.Item>
-
-            <Form.Item label="Description">
-              <TextArea
-                value={textarea}
-                onChange={(e) => setTextarea(e.target.value)}
-                rows={4}
-                style={{ width: "100%" }}
-              />
-            </Form.Item>
-          </div>
+    <div className="add-song-container">
+      <h2>Add Song</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="artist">Artist:</label>
+          <input
+            type="text"
+            id="artist"
+            name="artist"
+            value={formData.artist}
+            onChange={handleInputChange}
+            required
+          />
         </div>
-        <Form.Item>
-          <button className="save">Save</button>
-        </Form.Item>
-      </Form>
+        <div className="form-group">
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="genre">Genre:</label>
+          <input
+            type="text"
+            id="genre"
+            name="genre"
+            value={formData.genre}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="musicSrc">Music Source:</label>
+          <input
+            type="text"
+            id="musicSrc"
+            name="musicSrc"
+            value={formData.musicSrc}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="imgSrc">Image Source:</label>
+          <input
+            type="text"
+            id="imgSrc"
+            name="imgSrc"
+            value={formData.imgSrc}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="photo">Photo:</label>
+          <input
+            type="text"
+            id="photo"
+            name="photo"
+            value={formData.photo}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <button type="submit" style={{backgroundColor:'black',color:'white',fontSize:'20px',fontWeight:'500px',marginTop:'20px',padding:'5px',borderRadius:'5px'}}>Add Song</button>
+      </form>
     </div>
   );
 };
-export default () => <AddSong />;
+
+export default AddSongs;

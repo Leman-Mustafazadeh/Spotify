@@ -9,6 +9,7 @@ import AdminRoot from "../pages/Admin/AdminRoot";
 import AdminDashboard from "../pages/Admin/AdminDashboard";
 import AddSongs from "../pages/Admin/AddSong";
 import LikedSongs from "../components/LikedSongs";
+import UploadSong from "../pages/Admin/UploadSong/UploadSong";
 
 export const ROUTER = [
   {
@@ -59,7 +60,8 @@ export const ROUTER = [
         element: <AddSongs />,
       },
       {
-        
+        path:"uploadsong",
+        element:  <UploadSong />,
       }
     ],
   },
