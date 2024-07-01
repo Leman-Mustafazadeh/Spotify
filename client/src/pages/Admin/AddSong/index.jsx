@@ -2,39 +2,63 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const AddSongs = () => {
-  const { allDAta } = useSelector(state => state.player);
   const initialFormData = {
     artist: '',
     name: '',
     genre: '',
-    musicSrc: '',
-    imgSrc: '',
-    photo: ''
+    musicSrc: null,
+    imgSrc: null,
+    photo: null
   };
+
   const [formData, setFormData] = useState(initialFormData);
+  const [fileInputs, setFileInputs] = useState({
+    musicFile: null,
+    imgFile: null,
+    photoFile: null
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    setFileInputs({ ...fileInputs, [name]: files[0] });
+    setFormData({ ...formData, [name]: files[0] }); // FormData'ya dosya eklemek için
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url = 'http://localhost:6060/songs';
+    const formDataToSend = new FormData();
+    formDataToSend.append('artist', formData.artist);
+    formDataToSend.append('name', formData.name);
+    formDataToSend.append('genre', formData.genre);
+    formDataToSend.append('musicSrc', formData.musicSrc);
+    formDataToSend.append('imgSrc', formData.imgSrc);
+    formDataToSend.append('photo', formData.photo);
+    formDataToSend.append('musicFile', fileInputs.musicFile);
+    formDataToSend.append('imgFile', fileInputs.imgFile);
+    formDataToSend.append('photoFile', fileInputs.photoFile);
+
+    const url = 'http://localhost:6060/songs'; // Sunucu URL'si doğrulanmalı
 
     try {
       const response = await fetch(url, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+        body: formDataToSend
       });
 
       if (response.ok) {
         console.log('Song added successfully!');
-        setFormData(initialFormData); // Formu sıfırla
+        setFormData(initialFormData); // Formu başlangıç verilerine sıfırla
+        setFileInputs({
+          musicFile: null,
+          imgFile: null,
+          photoFile: null
+        });
       } else {
         console.error('Failed to add song');
       }
@@ -83,37 +107,34 @@ const AddSongs = () => {
         <div className="form-group">
           <label htmlFor="musicSrc">Music Source:</label>
           <input
-            type="text"
+            type="file"
             id="musicSrc"
             name="musicSrc"
-            value={formData.musicSrc}
-            onChange={handleInputChange}
+            onChange={handleFileChange}
             required
           />
         </div>
         <div className="form-group">
           <label htmlFor="imgSrc">Image Source:</label>
           <input
-            type="text"
+            type="file"
             id="imgSrc"
             name="imgSrc"
-            value={formData.imgSrc}
-            onChange={handleInputChange}
+            onChange={handleFileChange}
             required
           />
         </div>
         <div className="form-group">
           <label htmlFor="photo">Photo:</label>
           <input
-            type="text"
+            type="file"
             id="photo"
             name="photo"
-            value={formData.photo}
-            onChange={handleInputChange}
+            onChange={handleFileChange}
             required
           />
         </div>
-        <button type="submit" style={{backgroundColor:'black',color:'white',fontSize:'20px',fontWeight:'500px',marginTop:'20px',padding:'5px',borderRadius:'5px'}}>Add Song</button>
+        <button type="submit">Add Song</button>
       </form>
     </div>
   );
