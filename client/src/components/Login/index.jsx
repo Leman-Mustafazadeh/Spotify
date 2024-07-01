@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Cookies from "js-cookie";
 import { login } from "../../redux/slice/user";
-import controller from "../../API/index"; // Make sure to import your API controller
+import controller from "../../API/index"; 
 
 const Login = () => {
   const navigate = useNavigate();

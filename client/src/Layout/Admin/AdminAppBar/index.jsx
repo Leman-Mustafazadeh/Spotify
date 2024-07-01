@@ -64,17 +64,17 @@ const AdminAppBar = () => {
           items={[
             {
               key: '1',
-              icon: <Link style={{padding:0}} to="/admin"><AdminDashboard  /></Link>,
+              icon: <Link style={{padding:0}} to="/admin">Dashboard</Link>,
               /* label: 'User', */
             },
             {
               key: '2',
-              icon: <Link style={{padding:0}} to="add-songs"><AddSongs /></Link> ,
+              icon: <Link style={{padding:0}} to="add-songs">AddSongs</Link> ,
              /*  label: 'Add Songs', */
             },
             {
               key: '3',
-              icon: <Link style={{padding:0}} to="uploadsong"> <UploadSong /></Link>,
+              icon: <Link style={{padding:0}} to="uploadsong">Users </Link>,
             /*   label: 'nav 3', */
             },
           ]}

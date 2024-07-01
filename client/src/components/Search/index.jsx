@@ -17,7 +17,7 @@ useEffect(() => {
 }, [allDAta])
 
   return (
-    <div style={{ marginTop: "5px", marginLeft: "310px", width: "75.1vw" }}>
+    <div style={{ marginTop: "5px", marginLeft: "200px", width: "75.1vw" }}>
       <div className="popular">
         <div className="popular_left">
           <Navigation />

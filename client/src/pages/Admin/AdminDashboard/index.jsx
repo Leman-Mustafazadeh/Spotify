@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Space, Table, Button, Modal, Input } from 'antd';
 import './dashboard.css';
 import Swal from 'sweetalert2';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteOne, patch } from '../../../API';
 import { endpoints } from '../../../API/constants';
+import { hundleAllDAta } from '../../../redux/slice/player';
 
 const AdminDashboard = () => {
   const [data, setData] = useState([]);
@@ -13,7 +14,7 @@ const AdminDashboard = () => {
   const [editFormData, setEditFormData] = useState(null);
 
   const {allDAta} = useSelector(state => state.player);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     setData(allDAta);
   }, [allDAta]);
@@ -28,7 +29,7 @@ const AdminDashboard = () => {
     const updatedSongs = data.filter(song => song._id !== selectedSong);
     setData(updatedSongs);
     setModalOpen(false);
-    patch(endpoints.songs,)
+    patch(endpoints.songs,updatedSongs)
     Swal.fire({
       title: 'Deleted!',
       text: 'Your song has been deleted.',
@@ -55,7 +56,8 @@ const AdminDashboard = () => {
     const updatedSongs = data.map(song =>
       song._id === editFormData._id ? { ...song, ...editFormData } : song
     );
-    setData(updatedSongs);
+
+    dispatch(hundleAllDAta(updatedSongs))
     setEditFormData(null);
     setModalOpen(false);
     Swal.fire({

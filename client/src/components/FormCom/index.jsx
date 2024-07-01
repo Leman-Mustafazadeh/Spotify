@@ -11,6 +11,7 @@ import {
   editPlayerData,
   editPlayerData2,
   hundlePlayList,
+  HandlecratePlayListAdd,
 } from "../../redux/slice/player";
 import { endpoints } from "../../API/constants";
 import { getAll, post } from "../../API";
@@ -85,7 +86,8 @@ const FormCom = ({ playFind }) => {
   // useEffect(() => {
   //   setFilter(menu)
   // }, [menu])
-  const { allDAta } = useSelector((state) => state.player);
+  const { allDAta,cratePlayListAdd } = useSelector((state) => state.player);
+  console.log(cratePlayListAdd,"cratePlayListAdd");
   const [filter, setFilter] = useState(allDAta);
 
   const handleSearch = (inpValue) => {
@@ -157,7 +159,7 @@ const FormCom = ({ playFind }) => {
                 </div>
               </div>
 
-              <button>Add</button>
+              <button style={{cursor:"pointer",position:"relative",zIndex:"100000000"}} onClick={()=>dispatch(HandlecratePlayListAdd(item._id))} >Add</button>
             </div>
           ))}
         </div>

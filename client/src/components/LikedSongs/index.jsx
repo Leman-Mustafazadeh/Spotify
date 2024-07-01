@@ -44,7 +44,7 @@ const LikedSongs = () => {
     }
   }, [dispatch, current]);
 
-  const handleDelete = (id) => {
+ const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -76,7 +76,7 @@ const LikedSongs = () => {
       }
     });
   };
-
+ 
   return (
     <div style={{ marginTop: "5px", marginLeft: "310px", width: "75.1vw" }}>
       <div className="popular">
@@ -109,7 +109,7 @@ const LikedSongs = () => {
       </div>
 
       <div className="musics">
-        {likeSongs.map((item) => (
+        {likeSongs?.map((item) => (
           <div className="music_like_wrap" key={item._id}>
             <span
               style={{ position: "relative", zIndex: "10000" }}
@@ -138,7 +138,7 @@ const LikedSongs = () => {
               </div>
 
               {/* Silme ikonu */}
-              <i className="fa-solid fa-trash" onClick={() => handleDelete(item._id)}></i>
+           {/*    <i className="fa-solid fa-trash" onClick={() => handleDelete(item._id)}></i> */}
             </div>
           </div>
         ))}

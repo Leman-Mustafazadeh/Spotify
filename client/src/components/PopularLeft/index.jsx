@@ -33,7 +33,6 @@ const PopularLeft = () => {
           <div className="">
             <div className="leftHead">
               <div className="home_head">
-                {/* Use correct class names for Font Awesome icons */}
                 <i className="fab fa-spotify"></i>
                 <h3>Spotify</h3>
               </div>
@@ -69,22 +68,7 @@ const PopularLeft = () => {
                   </Link>
                 </p>
               </div>
-              {/* <div className="home_item library">
-            <i className="fas fa-book"></i>
-            <p><Link to={'/library'} style={{textDecoration:'none',color:'white',fontSize:'20px'}}>Your Library</Link></p>
-          </div> */}
-
-{/* <p className="like_icon" onClick={() => {
-              if (user.id != null && user.role === 'client') {
-                dispatch(handleLikeSongs(current._id));
-              } else {
-                navigate("/login"); // Navigate to login page if not logged in
-              }
-            }}> */}
-
-
-
-
+          
               <div className="home_item">
                 <i
                   onClick={() =>{ if(user.id!==null && user.role==="client"){

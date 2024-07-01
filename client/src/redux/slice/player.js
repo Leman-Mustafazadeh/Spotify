@@ -16,6 +16,8 @@ const initialState = {
   musicData: [],
   likeSongs: [],
   nextSongCount: 0,
+  admineditSongs: [],
+  cratePlayListAdd: []
 };
 
 export const playerSlice = createSlice({
@@ -87,8 +89,9 @@ export const playerSlice = createSlice({
     handleLikeSongs: (state, action) => {
       state.allDAta.map((item) => {
         if (item._id === action.payload) {
-          if (!state.likeSongs.some((likeSong) => likeSong._id === item._id)) {
-            state.likeSongs.push({ ...item, playing: false });
+          if (!state.likeSongs?.some((likeSong) => likeSong._id === item._id)) {
+            state.likeSongs?.push({ ...item, playing: false });
+            /*  localStorage.setItem('likeSong',JSON.stringify(state.likeSongs)); */
           }
         }
       });
@@ -117,6 +120,18 @@ export const playerSlice = createSlice({
       state.nextSongCount--;
       state.current = state.allDAta[state.nextSongCount];
     },
+    handleAdminEditSongs: (state, action) => {
+      state.admineditSongs = state.allDAta;
+    },
+    HandlecratePlayListAdd: (state, action) => {
+      state.allDAta.map((item) => {
+        if (item._id === action.payload) {
+          if (!state.cratePlayListAdd?.some((likeSong) => likeSong._id === item._id)) {
+            state.cratePlayListAdd?.push({ ...item, playing: false });
+          };
+        };
+      });
+    }
   },
 });
 
@@ -139,6 +154,8 @@ export const {
   handleLikedData,
   handleNextSong,
   handlePrevSong,
+  handleAdminEditSongs,
+  HandlecratePlayListAdd
 } = playerSlice.actions;
 
 export default playerSlice.reducer;

@@ -57,3 +57,33 @@ input {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 30px;
 }
+
+@media (max-width: 1024px) {
+  .headSearch{
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+ }
+ @media (max-width: 900px) {
+  .headSearch{
+    grid-template-columns: 1fr 1fr  !important;
+  }
+  .popular input{
+    width: 50%;
+  }
+ }
+ @media (max-width: 700px) {
+  .headSearch{
+    grid-template-columns: 1fr 1fr  !important;
+  }
+  .popular input{
+    width: 30%;
+  }
+ }
+ @media (max-width: 500px) {
+  .headSearch{
+    grid-template-columns: 1fr   !important;
+  }
+  .popular input{
+    width: 20%;
+  }
+ }

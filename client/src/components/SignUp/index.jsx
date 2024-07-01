@@ -31,7 +31,7 @@ const SignUp = () => {
       username: "",
       email: "",
       password: "",
-      role: "", // This was missing in your initial values
+      role: "", 
     },
     validationSchema: userValidation,
     onSubmit: async (values, actions) => {
@@ -43,13 +43,6 @@ const SignUp = () => {
           values.password,
           values.role
         );
-        // formData.append("src", newUser.src);
-        // formData.append("username", newUser.username);
-        // formData.append("email", newUser.email);
-        // formData.append("password", newUser.password);
-        // // formData.append("isBanned", newUser.isBanned);
-        // // formData.append("banCount", newUser.banCount);
-        // formData.append("role", newUser.role);
         const response = await controller.post(endpoints.users, newUser);
      
     console.log(response);

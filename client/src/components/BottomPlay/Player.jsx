@@ -26,8 +26,8 @@ const Player = () => {
   });
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const [shuffleMode, setShuffleMode] = useState(false); // State for shuffle mode
-  const [shuffledPlaylist, setShuffledPlaylist] = useState([]); // State for shuffled playlist
+  const [shuffleMode, setShuffleMode] = useState(false); 
+  const [shuffledPlaylist, setShuffledPlaylist] = useState([]); 
 
   useEffect(() => {
     if (controls && current) {
@@ -62,7 +62,7 @@ const Player = () => {
   };
 
   const toggleShuffle = () => {
-    setShuffleMode(!shuffleMode); // Toggle shuffle mode
+    setShuffleMode(!shuffleMode); 
   };
 
   const shuffleArray = (array) => {
@@ -71,7 +71,7 @@ const Player = () => {
     }
   
     let currentIndex = array.length, temporaryValue, randomIndex;
-    let newArray = array.slice(); // Create a shallow copy of the array
+    let newArray = array.slice();
   
     while (currentIndex !== 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
@@ -148,7 +148,7 @@ const Player = () => {
       if (user.id != null && user.role === 'client') {
         dispatch(handleLikeSongs(current._id));
       } else {
-        navigate("/login"); // Navigate to login page if not logged in
+        navigate("/login"); 
       }
     }}>
       <i className="fa-solid fa-plus"></i>

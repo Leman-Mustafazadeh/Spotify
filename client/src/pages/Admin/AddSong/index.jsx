@@ -68,7 +68,7 @@ const AddSongs = () => {
   };
 
   return (
-    <div className="add-song-container">
+    <div  className="add-song-container">
       <h2>Add Song</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
