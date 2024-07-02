@@ -112,7 +112,7 @@ console.log(req.body)
   user_login: async (req, res) => {
     const user = await UserModel.findOne({
       email: req.body.email,
-    }).or([{ role: "artist" }, { role: "client" }]);
+    }).or([{ role: "artist" }, { role: "client" },{ role: "admin" }]);
     console.log(user);
     if (user) {
       bcrypt.compare(

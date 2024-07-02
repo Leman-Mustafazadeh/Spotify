@@ -72,11 +72,6 @@ const AdminAppBar = () => {
               icon: <Link style={{padding:0}} to="add-songs">AddSongs</Link> ,
              /*  label: 'Add Songs', */
             },
-            {
-              key: '3',
-              icon: <Link style={{padding:0}} to="uploadsong">Users </Link>,
-            /*   label: 'nav 3', */
-            },
           ]}
         />
       </Sider>

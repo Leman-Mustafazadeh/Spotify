@@ -113,10 +113,10 @@ const Login = () => {
         </Button>
       </form>
 
-      <a href="#">Forgot your password?</a>
+      
       <hr />
 
-      <p>
+      <p style={{marginTop:'20px'}}>
         Don't have an account? <Link to="/signup">Sign up for Spotify</Link>
       </p>
     </div>

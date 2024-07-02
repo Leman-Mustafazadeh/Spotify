@@ -10,6 +10,7 @@ import AdminDashboard from "../pages/Admin/AdminDashboard";
 import AddSongs from "../pages/Admin/AddSong";
 import LikedSongs from "../components/LikedSongs";
 import UploadSong from "../pages/Admin/UploadSong/UploadSong";
+import AdminLogin from "../pages/Admin/Login";
 
 export const ROUTER = [
   {
@@ -53,7 +54,7 @@ export const ROUTER = [
     children: [
       {
         index: true,
-        element: <AdminDashboard /> 
+        element:  <AdminLogin />,
       },
       {
         path: "add-songs",
@@ -62,7 +63,11 @@ export const ROUTER = [
       {
         path:"uploadsong",
         element:  <UploadSong />,
-      }
+      },
+      {
+        path:"admindashboard",
+       element:<AdminDashboard/>
+      },
     ],
   },
 ];

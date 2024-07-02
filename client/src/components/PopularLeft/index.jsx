@@ -109,10 +109,10 @@ const PopularLeft = () => {
             </div>
           </div>
 
-          <div className="home_lang">
+          {/* <div className="home_lang">
             <i className="fas fa-globe-americas"></i>
             <p>English</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
